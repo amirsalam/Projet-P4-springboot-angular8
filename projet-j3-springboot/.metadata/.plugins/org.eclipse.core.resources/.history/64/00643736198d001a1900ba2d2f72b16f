@@ -1,0 +1,5 @@
+package com.youcode.entity;
+
+public class User {
+
+}

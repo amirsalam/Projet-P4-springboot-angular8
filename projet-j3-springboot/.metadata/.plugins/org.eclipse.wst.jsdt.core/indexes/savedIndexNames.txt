@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+C:\Users\Youcode\eclipse-workspace\E-commerce-springboot-j3-angular\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3651273945.index
+1688509930.index
+1075314297.index
+3086996195.index
+3829344683.index
+445292415.index
+3965268647.index
+3923531990.index
