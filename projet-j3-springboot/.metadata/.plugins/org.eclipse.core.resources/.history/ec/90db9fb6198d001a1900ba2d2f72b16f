@@ -1,5 +1,0 @@
-package com.youcode.repositories;
-
-public interface UserRepository {
-
-}

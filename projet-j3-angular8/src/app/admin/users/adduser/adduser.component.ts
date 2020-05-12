@@ -1,4 +1,4 @@
-import { Component, OnInit, Input ,EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input , EventEmitter, Output } from '@angular/core';
 import { User } from '../../users/User';
 import { Router } from '@angular/router';
 import { HttpClientService } from '../../../service/http-client/http-client.service';
@@ -12,13 +12,13 @@ import { HttpClientService } from '../../../service/http-client/http-client.serv
 export class AdduserComponent implements OnInit {
 
   @Input()
-  user: User
+  user: User;
 
   @Output()
   userAddedEvent = new EventEmitter();
 
   constructor(private httpClientService: HttpClientService,
-    private router: Router) { }
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -33,7 +33,5 @@ export class AdduserComponent implements OnInit {
   }
 
   }
-
-  
 
 

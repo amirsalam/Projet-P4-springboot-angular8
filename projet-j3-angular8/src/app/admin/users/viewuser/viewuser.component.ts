@@ -12,13 +12,13 @@ import { HttpClientService } from '../../../service/http-client/http-client.serv
 export class ViewuserComponent implements OnInit {
 
   @Input()
-  user: User
+  user: User;
 
   @Output()
   userDeletedEvent = new EventEmitter();
 
   constructor(private httpClientService: HttpClientService,
-    private router: Router) { }
+              private router: Router) { }
 
   ngOnInit() {
   }

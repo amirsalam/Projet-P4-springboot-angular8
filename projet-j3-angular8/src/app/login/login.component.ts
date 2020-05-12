@@ -12,16 +12,18 @@ export class LoginComponent implements OnInit {
     submitted = false;
     returnUrl: string;
     error = '';
+    invalidLogin = false;
 
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService
-    ) { 
+    ) {
         // redirect to home if already logged in
-        if (this.authenticationService.currentAdminValue) { 
-            this.router.navigate(['/']);
+        if (this.authenticationService.currentAdminValue) {
+
+            this.router.navigate(['/dashboard']);
         }
     }
 
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
         });
 
         // get return url from route parameters or default to '/'
+        // tslint:disable-next-line: no-string-literal
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
@@ -59,5 +62,4 @@ export class LoginComponent implements OnInit {
                 });
     }
 }
-
 

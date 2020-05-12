@@ -3,7 +3,7 @@ export class Book {
     name: string;
     author: string;
     price: number;
-    picByte: string;   
-    retrievedImage: string; 
-    isAdded: boolean;    
+    picByte: string;
+    retrievedImage: string;
+    isAdded: boolean;
     }

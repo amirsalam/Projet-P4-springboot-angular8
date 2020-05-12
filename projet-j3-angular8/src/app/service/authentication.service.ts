@@ -19,9 +19,9 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient
 
-  ) { 
+  ) {
     this.currentAdminSubject = new BehaviorSubject<Admin>(JSON.parse(localStorage.getItem('currentAdmin')));
-        this.currentAdmin = this.currentAdminSubject.asObservable();
+    this.currentAdmin = this.currentAdminSubject.asObservable();
   }
 
   public get currentAdminValue(): Admin {
@@ -39,10 +39,16 @@ login(username: string, password: string) {
       }));
 }
 
+
+
+
+
+
 logout() {
   // remove user from local storage to log user out
   localStorage.removeItem('currentAdmin');
   this.currentAdminSubject.next(null);
+
 }
 }
 

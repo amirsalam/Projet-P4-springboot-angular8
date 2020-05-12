@@ -15,16 +15,16 @@ export class BooksComponent implements OnInit {
   action: string;
   selectedBook: Book;
 
+
   constructor(private httpClientService: HttpClientService,
-    private activedRoute: ActivatedRoute,
-    private router: Router) { }
+              private activedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.refreshData();
    }
 
-   refreshData()
-   {
+   refreshData() {
     this.httpClientService.getBooks().subscribe(
       response => this.handleSuccessfulResponse(response)
     );
@@ -61,7 +61,7 @@ export class BooksComponent implements OnInit {
       bookwithRetrievedImageField.retrievedImage = 'data:image/jpeg;base64,' + book.picByte;
       bookwithRetrievedImageField.author = book.author;
       bookwithRetrievedImageField.price = book.price;
-      bookwithRetrievedImageField.picByte=book.picByte;
+      bookwithRetrievedImageField.picByte = book.picByte;
       this.books.push(bookwithRetrievedImageField);
     }
   }
@@ -76,5 +76,6 @@ export class BooksComponent implements OnInit {
   }
 
 }
+
 
 

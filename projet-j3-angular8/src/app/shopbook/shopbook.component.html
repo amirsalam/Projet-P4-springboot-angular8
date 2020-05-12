@@ -15,20 +15,22 @@
                         <span class="caret">{{cartBooks.length}}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-cart" role="menu">
-                        <li *ngFor="let item of cartBooks">
+                        <li *ngFor= "let item of cartBooks">
                             <div class="item product-cart-item row">
-                                <div class="col-md-8" *ngIf="item">{{item.name}}</div>
-                                <div class="col-md-4" *ngIf="item"><strong>${{item.price}}</strong></div>
+                                <div class="col-md-8" *ngIf= "item">{{item.name}}</div>
+                                <div class="col-md-4" *ngIf= "item"><strong>${{item.price}}</strong></div>
                             </div>
+        
                         </li>
                         <hr>
-                        <li><a class="btn btn-small btn-success" role="button" (click)="goToCart()">View Cart</a></li>
+                        <li><a class="btn btn-small btn-success" role="button" (click)= "goToCart()">View Cart</a></li>
                         <br>
-                        <li *ngIf="cartBooks.length > 0">
-                            <a class="btn btn-small btn-warning" role="button" (click)="emptyCart()">Empty Cart</a></li>
+                        <li *ngIf= "cartBooks.length > 0">
+                            <a class="btn btn-small btn-warning" role="button" (click)= "emptyCart()">Empty Cart</a></li>
                     </ul>
                 </li>
             </ul>
+            
         </div>
     </div>
 </div>
@@ -51,8 +53,12 @@
                     <button class="btn btn-primary btn-sm" (click)="addToCart(book.id)"
                         [disabled]="book.isAdded===true">Add To Cart</button>
                 </div>
+                
             </div>
 
         </div>
+        
     </div>
+    
 </div>
+

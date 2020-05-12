@@ -2,6 +2,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { UsersComponent } from './admin/users/users.component';
 import { AdduserComponent } from './admin/users/adduser/adduser.component';
@@ -19,19 +20,20 @@ import { fakeBackendProvider } from './helpers/fake-backend';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
-import { BasicAuthInterceptor } from './helpers/basic-auth.interceptor';
+import {JwtInterceptor} from './helpers/jwt.interceptor'
 import { ErrorInterceptor } from './helpers/error.interceptor';
 
 
 import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
     imports: [
       BrowserModule,
       AppRoutingModule,
       HttpClientModule,
-      FormsModule
+      FormsModule,
+      ReactiveFormsModule
     ],
     declarations: [
       AppComponent,
@@ -46,11 +48,12 @@ import { LoginComponent } from './login/login.component';
       ViewbookComponent,
       ShopbookComponent,
       LogoutComponent,
-      FooterComponent
+      FooterComponent,
+      AdminComponent
     ],
     providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // provider used to create fake backend
         fakeBackendProvider

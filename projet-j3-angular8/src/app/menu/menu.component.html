@@ -5,18 +5,9 @@
 
         <ul class="navbar-nav">
             <li><a  class="nav-link" routerLink="/shop"  >Shop</a></li>
-            <li *ngIf="loginService.isUserLoggedIn()" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Admin
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a routerLink="/admin/users" class="dropdown-item">Users</a>
-                    <a routerLink="/admin/books" class="dropdown-item">Books</a>
-                </div>
-            </li>
-            <li><a *ngIf="loginService.isUserLoggedIn()"  routerLink="login" class="nav-link">Login</a></li>
-    <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/shop" class="nav-link">LogOut</a></li>
+            
+            <li><a   routerLink="/login" class="nav-link">Dashboard</a></li>
+            <li><a   routerLink="/logout" class="nav-link">LogOut</a></li>
         </ul>
     </nav>
 </header>

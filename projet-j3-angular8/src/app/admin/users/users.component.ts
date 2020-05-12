@@ -13,23 +13,24 @@ export class UsersComponent implements OnInit {
   action: string;
   selectedUser: User;
   constructor(private httpClientService: HttpClientService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+              private router: Router,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
 
     this.refreshData();
   }
 
-  refreshData(){
-    console.log('Test');
+  refreshData() {
     this.httpClientService.getUsers().subscribe(
       response => this.handleSuccessfulResponse(response),
     );
 
     this.activatedRoute.queryParams.subscribe(
       (params) => {
+        // tslint:disable-next-line: no-string-literal
         this.action = params['action'];
+        // tslint:disable-next-line: no-string-literal
         const selectedUserId = params['id'];
         if (selectedUserId) {
           this.selectedUser = this.users.find(user => user.id === +selectedUserId);
@@ -40,7 +41,7 @@ export class UsersComponent implements OnInit {
   }
 
   viewUser(id: number) {
-    this.router.navigate(['admin','users'], {queryParams : {id, action: 'view'}});
+    this.router.navigate(['admin', 'users'], {queryParams : {id, action: 'view'}});
   }
 
   addUser() {
@@ -53,5 +54,6 @@ export class UsersComponent implements OnInit {
   }
 
 }
+
 
 

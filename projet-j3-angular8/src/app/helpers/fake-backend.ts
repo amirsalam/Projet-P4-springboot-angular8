@@ -1,9 +1,10 @@
+import { Admin } from './../login/admin';
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
-import { Admin } from '../login/admin';
+
 
 const admins: Admin[] = [{ id: 1, username: 'admin', password: 'admin' }];
 
@@ -15,7 +16,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // wrap in delayed observable to simulate server api call
         return of(null)
             .pipe(mergeMap(handleRoute))
-            .pipe(materialize()) // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
+            .pipe(materialize())
             .pipe(delay(500))
             .pipe(dematerialize());
 
@@ -28,7 +29,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
-            }    
+            }
         }
 
         // route functions
@@ -36,22 +37,23 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function authenticate() {
             const { username, password } = body;
             const admin = admins.find(x => x.username === username && x.password === password);
-            if (!admin) return error('Username or password is incorrect');
+            if (!admin) { return error('Username or password is incorrect'); }
             return ok({
-                id: admin.id,
-                username: admin.username,
-            })
+                          id: admin.id,
+                          username: admin.username,
+                          token: 'fake-jwt-token'
+            });
         }
 
         function getAdmins() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) { return unauthorized(); }
             return ok(admins);
         }
 
         // helper functions
 
         function ok(body?) {
-            return of(new HttpResponse({ status: 200, body }))
+            return of(new HttpResponse({ status: 200, body }));
         }
 
         function error(message) {
@@ -63,7 +65,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function isLoggedIn() {
-            return headers.get('Authorization') === `Basic ${window.btoa('admin:admin')}`;
+            return headers.get('Authorization') === 'Bearer fake-jwt-token';
         }
     }
 }
@@ -74,4 +76,6 @@ export let fakeBackendProvider = {
     useClass: FakeBackendInterceptor,
     multi: true
 };
+
+
 

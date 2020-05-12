@@ -8,12 +8,12 @@ import { Admin } from '../login/admin';
 })
 export class AdminService {
 
-  constructor(){ }
-    // private http: HttpClient) 
+  constructor(
+    private http: HttpClient) { }
 
-//   getAll() {
-//     return this.http.get<Admin[]>(`${environment.apiUrl}/login`);
-// }
+  getAll() {
+    return this.http.get<Admin[]>(`${environment.apiUrl}/login`);
+}
 
-  
+
 }

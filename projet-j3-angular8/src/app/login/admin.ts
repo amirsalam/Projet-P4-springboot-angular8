@@ -4,4 +4,5 @@ export class Admin {
     password: string;
     status?: string;
     authdata?: string;
+    token?: string;
 }
